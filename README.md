@@ -1,38 +1,16 @@
 # KHCWeb — Khawaja Hasan Collection
 
-Luxury Indian occasionwear storefront with a dynamic product hero slider, product catalog, search and category filters, product quick view, cart, wishlist, checkout UI, and an admin dashboard. Product data can use Supabase or the built-in local fallback catalog.
+This is a static HTML version of the storefront. It does not require Vite, Node.js, npm, or a build step. GitHub Pages can serve `index.html` directly from the repository root.
 
-## Run locally
+## Deploy on GitHub Pages
+1. Extract this ZIP.
+2. Upload `index.html` and `README.md` directly to the root of the `KHCWeb` repository (not inside an extra nested folder).
+3. In GitHub, open **Settings → Pages**.
+4. Under **Build and deployment**, select **Deploy from a branch**, choose `main` and `/ (root)`, then Save.
 
-Prerequisite: Node.js (a current LTS release).
+## Supabase
+The site reads active records from the existing `products` table and expects these columns: `id`, `name`, `category`, `price`, `old_price`, `tag`, `image_url`, `image_urls`, `description`, `active`, `created_at`.
 
-```bash
-npm install
-npm run dev
-```
+Admin sign-in uses Supabase Auth. The signed-in user's `app_metadata.role` must equal `admin`. Keep Row Level Security enabled and configure policies so public visitors can read active products while only authorized admins can insert, read all, and delete products. The browser key is a publishable/anon key only; never put a Supabase service-role key in a public site.
 
-Create a local `.env.local` file if you want to configure Supabase with environment variables:
-
-```env
-VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
-VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY
-```
-
-You can also configure the Supabase URL and public anon/publishable key in the app's Admin Portal settings. Never put a Supabase service-role key or other private secret in frontend code. Configure Supabase Auth, table permissions/RLS, and Storage policies before enabling live product management.
-
-## Build
-
-```bash
-npm run build
-npm run lint
-```
-
-## GitHub repository
-
-This archive is prepared for a repository named `KHCWeb`. Extract the ZIP contents directly into the repository root so `package.json`, `index.html`, `src/`, and the configuration files are at the top level.
-
-## Important notes
-
-- Currency display defaults to Indian Rupees (INR); additional currencies are display conversions and their rates should be updated before production use.
-- Confirm product pricing, contact details, shipping/returns policy, and payment integration before publishing.
-- The checkout interface is not by itself a payment gateway or order-processing backend.
+Product image URLs should be public HTTPS URLs. This no-build edition intentionally uses plain HTML/CSS/JavaScript and a Supabase CDN script, so it does not use Vite or a package manager.
