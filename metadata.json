@@ -1,0 +1,8 @@
+{
+  "name": "KHCWeb — Khawaja Hasan Collection",
+  "description": "KHCWeb storefront for Khawaja Hasan Collection with dynamic hero slider, product catalog, shopping cart, wishlist, and Supabase admin management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
